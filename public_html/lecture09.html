@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> <!-- charset -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- viewport -->
+
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" /> <!-- Bootstrap CSS -->
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"> <!-- Icons library -->
+    </head>
+    <body>
+        <header class="mt-4 p-5 bg-primary text-white text-center rounded">
+            <div class="container">
+                <h1> CS456 - Lecture 09 </h1>
+            </div>
+        </header> <!-- Do not confuse <header> (semantic div) with <head> -->
+
+        <div class="container">
+            <div class="row">
+                <a class="link-success" style="font-size:26px" href="settings.html">  <i class="bi bi-house-heart-fill"></i> Home </a>
+                <a href="#"> <i class="bi bi-gear-fill"></i> Settings </a>
+                <a href="#"> <i class="bi bi-person-circle"></i> Account </a>
+                    <br/><br/>
+                <span class="text-danger" style="font-size:2em;"> 
+                <span class="bi bi-exclamation-triangle-fill"></span> Attention! </span> 
+                    <br/>
+                    <br/>
+
+                <p>
+                <span class="bg-dark text-white"> Dark BG and White Text </span> 
+                    <br/><br/>
+                <span class="bg-primary text-light badge rounded-pill">
+                    <span class="bi bi-chat-right-text-fill"></span> New Messages! </span> 
+                </span>
+                </p>
+
+            </div>
+            <div class="row">
+                <div class="col">
+<div class="alert alert-success"> <strong>Success. </strong> Data saved in the system.</div>
+
+<div class="alert alert-danger"> <strong> Error. </strong> Please contact the sysadmin.</div>
+
+<div class="alert alert-danger alert-dismissible fade show"> <button type="button" class="btn-close" data-bs-dismiss="alert"> </button>
+<strong> Error. </strong> Please contact the sysadmin.</div>
+
+
+                </div>
+            </div>
+        </div>
+<div class="row"> 
+  <div class="offset-md-2 col-12 col-md-8">
+    <img src="images/pirates.png" class="img-fluid"/>
+<!-- Image width will adjust to fit into the cols -->
+  </div>
+</div>
+
+
+    </body>
+
+
+    <!-- It is a common thing on wep pages to import JS at the bottom of the page. That way your website will "load" its visual elements before it gets "stuck" on the code. -->
+    <!-- Bootstrap Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+          <h1> Example POST Form </h1>
+  <form action="http://localhost:3000" method="post" >
+    <p> <label for="fname"> First Name: </label>
+        <input type="text" name="fname" placeholder="Your First Name"/> <br/>
+        <label for="lastname"> Last Name: </label> 
+              <input type="text" name="lastname" /> <br/>
+        <label> Password: </label> 
+        <input type="password" name="pwd" /> <br/>
+        <label> Number: </label>
+        <input type="number" name="txt_number" value="42" /><br/>
+        <input type="range" name="txt_range" max="10" /> <br/>
+
+        <textarea name="mytextarea" rol="5"> Text <br/> </textarea> <br/>
+        <input type="checkbox" name="check" checked="true" /> <label>
+            Check here if you want to subscribe to our mailing list.
+        </label> <br/> <br/>
+        <input type="radio" name="rad_options" value="1" checked /> <label> Option 1 </label> 
+        <input type="radio" name="rad_options" value="2"/> <label> Option 2 </label> 
+        <input type="radio" name="rad_options" value="3"/> <label> Option 3 </label> 
+        
+        <br/>
+        <br/>
+
+        Favorite Language:
+        <select name="language">
+            <option value="0">==Choose one==</option>
+            <option value="js">JavaScript</option>
+            <option value="sm">Smalltalk</option>
+            <option value="java">Java</option>
+        </select> <br/>
+
+        <label for="flc">Select a picture</label> 
+        <input type="file" name="flc" accept="image/*" /><br/>
+
+        <label for="search_prod">Product:</label> 
+        <input type="search" name="search_prod" />
+        <button type="submit"> Search </button> <br/>
+
+        <label>Datetime:</label> <input type="datetime-local" name="dt"/>
+
+        <label for="selcol">Color:</label> 
+        <input type="color" name="selcol" value="#0000FF"/> <br/>
+
+        <br/>
+        <input type="hidden" name="id_product" value="42"/>
+
+        <input type="submit" value="Send" /> 
+        <input type="reset" />
+        <input type="button" value="Nothing" onclick="alert('Hi');" />
+        <button type="submit"> This is a Button <br/> Really! </button>
+        <!-- <input type="image" src="images/click.jpeg" /> -->
+       
+    </p>
+
+
+  </form>
+
+    </body>
+</html>
