@@ -33,8 +33,13 @@ app.get("/user/:uid",function(req,res){
         }
     }
 
-    res.status(200);
-    res.send(user);
+    if(user != null){
+        res.status(200);
+        res.send(user);
+    } else {
+        res.status(404); 
+        res.send({msg:'User with this ID does not exists'});
+    }
     res.end();
 
 });
