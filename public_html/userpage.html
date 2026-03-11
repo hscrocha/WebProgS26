@@ -50,15 +50,21 @@
         </nav>    
         
         <div class="container d-flex flex-column min-vh-100">
-            <div class="row">
-                <div class="col">
+            <div class="row mt-2">
+                <div class="col-6 col-md-3">
                     <h2> CRUD Users </h2>
+                </div>
+                <div class="col-6 col-md-3">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#userFormModal">
+                     <i class="bi bi-person-plus-fill"></i> New User 
+                    </button>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div>
-                        <table class="table table-striped">
+                        <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <td>  </td>
@@ -87,6 +93,69 @@
             </div>
 
         </div>
+        <!-- MODAL for Creating a new User -->
+        <div class="modal" id="userFormModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">User Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="http://localhost:4000/user" class="was-validated">
+                <div class="modal-body">
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_id"> ID: </label>
+      <div class="col-12 col-md"> 
+         <input class="form-control" type="text" name="txt_id" id="txt_id" placeholder="Auto generated" readonly />
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+                    
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_name"> Name: </label>
+      <div class="col-12 col-md"> 
+         <input class="form-control" type="text" name="txt_name" id="txt_name" required />
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_login"> Login: </label>
+      <div class="col-12 col-md"> 
+         <input class="form-control" type="email" name="txt_login" id="txt_login" required />
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_password"> Password: </label>
+      <div class="col-12 col-md"> 
+         <input class="form-control" type="password" name="txt_password" id="txt_password" minlength="6" required />
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_conf"> Confirm Pwd: </label>
+      <div class="col-12 col-md"> 
+         <input class="form-control" type="password" name="txt_conf" id="txt_conf" minlength="6" required />
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_permission"> Permission: </label>
+      <div class="col-12 col-md"> 
+          <select name="txt_permission" class="form-control">
+             <option value="2"> Common </option>
+             <option value="1"> Admin </option>
+          </select>
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="reset" class="btn btn-warning" >Clear</button>
+                    <button type="submit" class="btn btn-primary"> Save </button>
+                </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <!-- end of modal code -->
 
         <footer class="bg-dark text-white p-2">
             <div class="container text-center">
