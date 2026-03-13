@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-6 col-md-3">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#userFormModal">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#userFormModal" onclick="resetForm();">
                      <i class="bi bi-person-plus-fill"></i> New User 
                     </button>
                 </div>
@@ -101,7 +101,7 @@
                     <h5 class="modal-title">User Information</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="http://localhost:4000/user" class="was-validated">
+                <form id="userform" method="post" action="http://localhost:4000/user" class="was-validated">
                 <div class="modal-body">
    <div class="row mb-2"> 
       <label class="col-form-label col-md-3" for="txt_id"> ID: </label>
@@ -137,7 +137,7 @@
    <div class="row mb-2"> 
       <label class="col-form-label col-md-3" for="txt_permission"> Permission: </label>
       <div class="col-12 col-md"> 
-          <select name="txt_permission" class="form-control">
+          <select name="txt_permission" id="txt_permission" class="form-control">
              <option value="2"> Common </option>
              <option value="1"> Admin </option>
           </select>
@@ -168,18 +168,20 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
         <!-- Other JS scripts also here -->
         <script>
+            let lstUsers = [];
             async function readUserData(){
                 let response = await fetch('/user'); //gets data
-                let lstUsers = await response.json(); //converts to JavaScript Object
+                lstUsers = await response.json(); //converts to JavaScript Object
                 
                 let output = "";
                 for(let i=0; i<lstUsers.length; i++){
                     output+= ` 
                     <tr>
                         <td>
-                            <i class="bi bi-pencil-square text-primary"></i>  
+                            <a onclick="editUserModal(${i})" data-bs-toggle="modal" data-bs-target="#userFormModal"><i class="bi bi-pencil-square text-primary"></i></a>  
                             &nbsp; <!-- blank space -->
-                            <i class="bi bi-trash-fill text-danger"></i>  </td> 
+                            
+                        <a href="/deleteuser/${ lstUsers[i]._id }" onclick="return areYouSure();"><i class="bi bi-trash-fill text-danger"></i></a>  </td> 
                         <td> ${ lstUsers[i]._id } </td>
                         <td> ${ lstUsers[i].name } </td>
                         <td> ${ lstUsers[i].login} </td>
@@ -203,6 +205,19 @@
                     return false;
                 }
                 return true;
+            }
+            function areYouSure(){
+                return window.confirm("Are you sure you want to delete this user?");
+            }
+            function editUserModal(index){
+                document.getElementById("txt_id").value = lstUsers[index]._id;
+                document.getElementById("txt_name").value = lstUsers[index].name;
+                document.getElementById("txt_login").value = lstUsers[index].login;
+                document.getElementById("txt_password").value = lstUsers[index].password;            
+                document.getElementById("txt_permission").value = lstUsers[index].permission;
+            }
+            function resetForm(){
+                document.getElementById("userform").reset();
             }
         </script>
 

@@ -47,6 +47,7 @@ app.get("/user/:uid",function(req,res){
 });
 
 app.post("/user",function(req,res){
+
     let uname = req.body.txt_name; //always red.body.<inputName>
     let ulogin = req.body.txt_login;
     let upwd = req.body.txt_password;
@@ -55,17 +56,57 @@ app.post("/user",function(req,res){
         uperm = parseInt( req.body.txt_permission );
     }
 
-    //Generating ID by ourselves, take the last item in the array and adds 1 to their id
-    let uid = lstUsers[ lstUsers.length -1 ]._id +1;
-    //The ID generation above is just for the current memory array example.
-    //DO NOT try to generate ids yourself when using a database.
+    if(req.body.txt_id && req.body.txt_id !== ""){
+        // update operation
+        console.log("Update...");
+        let uid = parseInt( req.body.txt_id);
+        let pos = -1;
+        for(let i=0; i<lstUsers.length; i++){
+            if( lstUsers[i]._id === uid ){
+                pos = i; // saves the array position of the item to delete
+            }
+        }
 
-    let newuser = {_id: uid, name: uname, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
+        if(pos >= 0 && pos < lstUsers.length){
+            let newuser = {_id: uid, name: uname, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
+            lstUsers[pos] = newuser;
+        }
+        
 
-    lstUsers.push( newuser ); //adds to the array (manual insertion)
-    //DO NOT do this when using a database
+    } else {
+        // create/insert operation
+
+        //Generating ID by ourselves, take the last item in the array and adds 1 to their id
+        let uid = lstUsers[ lstUsers.length -1 ]._id +1;
+        //The ID generation above is just for the current memory array example.
+        //DO NOT try to generate ids yourself when using a database.
+
+        let newuser = {_id: uid, name: uname, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
+
+        lstUsers.push( newuser ); //adds to the array (manual insertion)
+        //DO NOT do this when using a database
+    }
 
     res.redirect("userpage.html"); //redirects output to this webpage
+});
+
+
+app.get('/deleteuser/:uid',function(req,res){
+    let uid = parseInt( req.params.uid ); //takes the URL parameter
+
+    let pos = -1;
+    for(let i=0; i<lstUsers.length; i++){
+        if( lstUsers[i]._id === uid ){
+            pos = i; // saves the array position of the item to delete
+        }
+    }
+
+    if(pos >= 0 && pos < lstUsers.length){
+        lstUsers.splice(pos,1);
+    }
+
+    res.redirect("../userpage.html")
+
 });
 
 
