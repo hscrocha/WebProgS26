@@ -20,6 +20,6 @@ test("Create method",function(){
     expect(created._id).toBeDefined(); //Assertions
     expect(created.login).toBe(found.login);
 
-    dao.delete(created._id); // clean up
+    dao.del(created._id); // clean up
 
 });

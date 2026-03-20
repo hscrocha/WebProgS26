@@ -1,4 +1,5 @@
 const dao = require('../model/UserDaoMem');
+const passutil = require('../util/PasswordUtil');
 
 exports.getAll = function(req,res){
     res.status(200); // Ok status
@@ -25,7 +26,7 @@ exports.postCreateUpdate = function(req,res){
 
     let uname = req.body.txt_name; //always red.body.<inputName>
     let ulogin = req.body.txt_login;
-    let upwd = req.body.txt_password;
+    let upwd = passutil.hashPassword( req.body.txt_password );
     let uperm = 2; 
     if (req.body.txt_permission ){
         uperm = parseInt( req.body.txt_permission );
@@ -35,12 +36,12 @@ exports.postCreateUpdate = function(req,res){
         // update operation
         console.log("Update...");
         let uid = parseInt( req.body.txt_id);
-        let newuser = {_id: uid, name: uname, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
+        let newuser = {_id: uid, name: uname, password:upwd, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
         dao.update(newuser);
 
     } else {
         // create/insert operation
-        let newuser = {name: uname, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
+        let newuser = {name: uname, password:upwd, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
         dao.create(newuser);
     }
 
