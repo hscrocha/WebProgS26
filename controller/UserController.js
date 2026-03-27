@@ -1,9 +1,9 @@
-const dao = require('../model/UserDaoMem');
+const dao = require('../model/UserDaoMongoose');
 const passutil = require('../util/PasswordUtil');
 
-exports.getAll = function(req,res){
+exports.getAll = async function(req,res){
     res.status(200); // Ok status
-    res.send( dao.readAll() ); // Sending the array
+    res.send( await dao.readAll() ); // Sending the array
     res.end(); // Ends the response (optional but important)
 };    
 
@@ -22,7 +22,7 @@ exports.get = function(req,res){
     res.end();
 }
 
-exports.postCreateUpdate = function(req,res){
+exports.postCreateUpdate = async function(req,res){
 
     let uname = req.body.txt_name; //always red.body.<inputName>
     let ulogin = req.body.txt_login;
@@ -37,12 +37,12 @@ exports.postCreateUpdate = function(req,res){
         console.log("Update...");
         let uid = parseInt( req.body.txt_id);
         let newuser = {_id: uid, name: uname, password:upwd, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
-        dao.update(newuser);
+        await dao.update(newuser);
 
     } else {
         // create/insert operation
         let newuser = {name: uname, password:upwd, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
-        dao.create(newuser);
+        await dao.create(newuser);
     }
 
     res.redirect("userpage.html"); //redirects output to this webpage

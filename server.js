@@ -1,6 +1,8 @@
 //const DotEnv = require('dotenv');
 //DotEnv.config();
 require('dotenv').config();
+const dbcon = require('./model/DbConnection');
+dbcon.connect();
 
 const ExpApp = require('./app');
 
