@@ -32,7 +32,7 @@ exports.update = async function(user){
 }
 
 exports.del = async function(uid){
-    const user = userModel.findByIdAndDelete(uid);
+    const user = await userModel.findByIdAndDelete(uid);
     return user;
 }
 

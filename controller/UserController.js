@@ -7,10 +7,10 @@ exports.getAll = async function(req,res){
     res.end(); // Ends the response (optional but important)
 };    
 
-exports.get = function(req,res){
+exports.get = async function(req,res){
     let uid = parseInt( req.params.uid ); //takes the URL parameter
 
-    let user = dao.read(uid);
+    let user = await dao.read(uid);
 
     if(user != null){ // requested user exists
         res.status(200);
@@ -48,11 +48,10 @@ exports.postCreateUpdate = async function(req,res){
     res.redirect("userpage.html"); //redirects output to this webpage
 }
 
-exports.getDelete = function(req,res){
+exports.getDelete = async function(req,res){
     let uid = parseInt( req.params.uid ); //takes the URL parameter
 
-    dao.del(uid);
+    await dao.del(uid);
     
     res.redirect("../userpage.html")
-
 };
