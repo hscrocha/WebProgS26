@@ -50,47 +50,42 @@
             </div>
         </nav>    
         <!-- Navbar ends -->
-   
-        
-        <div class="container">
+  
+
+        <div class="container" id="access-denied-panel">
             <div class="row mt-2">
-                <div class="col-6 col-md-3">
-                    <h2> Login </h2>
-                </div>
+                <h1 class="text-danger"> <i class="bi bi-exclamation-triangle-fill"></i> Access Denied <i class="bi bi-exclamation-triangle-fill"></i></h1>
             </div>
         </div>
-
-  <form class="was-validated" method="post" action="/dologin">
-    <div class="container" id="MainForm">
-      <div class="row mb-2">
-        <label class="col-form-label col-12 col-md-1" for="txt_login"> Login: </label>
-        <div class="col-12 col-md-4">
-          <input class="form-control" type="email" name="txt_login" id="txt_login" required />
+        
+        <div class="container" id="access-granted-panel">
+            <div class="row mt-2">
+                <div class="col-6 col-md-3">
+                    <h2> Admin Panel </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-grid col-3 col-md-1 offset-1">
+                    <a href="userpage.html" class="btn btn-primary" style="width:100px">
+                        <h3><span class="bi bi-people-fill"></span></h3>
+                        Manage Users
+                    </a>
+                </div>
+                <div class="d-grid col-3 col-md-1 offset-1">
+                    <a href="#" class="btn btn-primary" style="width:100px">
+                        <h3><span class="bi bi-chat-text-fill"></span></h3>
+                        Contact Messages
+                    </a>
+                </div>
+                <div class="d-grid col-3 col-md-1 offset-1">
+                    <a href="#" class="btn btn-primary" style="width:100px">
+                        <h3><span class="bi bi-gear-fill"></span></h3>
+                        App Settings
+                    </a>
+                </div>
+            </div>
+             
         </div>
-      </div>
-      <div class="row mb-2">
-        <label class="col-form-label col-12 col-md-1" for="txt_pass"> Password: </label>
-        <div class="col-12 col-md-4">
-          <input class="form-control" type="password" name="txt_pass" id="txt_pass" minlength="6" required />
-        </div>
-      </div>
-      <div class="row mb-2">
-        <div class="offset-md-1 col-12 col-md-2 d-grid">
-          <button type="submit" class="btn btn-success btn-block"> Login </button>
-        </div>
-        <div class="col-12 col-md-2 d-grid">
-          <button type="reset" class="btn btn-warning btn-block"> Clear </button>
-        </div>
-      </div>
-    </div>  
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6" id="msg-display">
-        </div>
-      </div>
-    </div>
-    
-  </form>  
 
   <br/>
   <br/>

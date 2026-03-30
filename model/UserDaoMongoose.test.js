@@ -60,6 +60,22 @@ test('Read all user', async function(){
     expect(lstUsers[0].name).toEqual(u1.name);
 });
 
+test('Login DAO method (login exists)', async function(){
+    let newuser = {name:"NEW",login:"n@n.com",password:"123456",permission: 1};
+
+    let created = await dao.create(newuser);
+    let logged = await dao.login(newuser.login);
+
+    expect(logged._id).toEqual(created._id);
+});
+
+test('Login DAO method (login does not exists)', async function(){
+
+    let logged = await dao.login("somelogin");
+
+    expect(logged).toBeNull();
+});
+
 test('Meanless test 1', function(){
     // Meanless Test without running any method
     // DO NOT write tests like this

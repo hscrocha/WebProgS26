@@ -55,3 +55,21 @@ exports.getDelete = async function(req,res){
     
     res.redirect("../userpage.html")
 };
+
+exports.postLogin = async function(req, res){
+    let ulogin = req.body.txt_login;
+    let upass = req.body.txt_pass;
+
+    let user = await dao.login(ulogin);
+    if(user != null 
+        && passutil.comparePassword(upass,user.password) ){
+            //Login sucessfull
+        user.password = null;
+        req.session.user = user;
+        res.redirect('index.html');
+    } else {
+        // Wrong Login or Password
+        res.redirect('login.html?error=1');
+    }
+
+}
