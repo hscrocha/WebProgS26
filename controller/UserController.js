@@ -27,8 +27,8 @@ exports.postCreateUpdate = async function(req,res){
     let uname = req.body.txt_name; //always red.body.<inputName>
     let ulogin = req.body.txt_login;
     let upwd = passutil.hashPassword( req.body.txt_password );
-    let uperm = 2; 
-    if (req.body.txt_permission ){
+    let uperm = 2;  //common user permission
+    if (req.body.txt_permission && exports.loggedAdminCheck(req,res) ){
         uperm = parseInt( req.body.txt_permission );
     }
 
@@ -72,4 +72,19 @@ exports.postLogin = async function(req, res){
         res.redirect('login.html?error=1');
     }
 
+}
+
+exports.getLoggedUser = function(req,res){
+    res.status(200);
+    res.send( req.session.user || "null");
+    res.end();
+}
+
+exports.getLogout = function(req,res){
+    req.session.user = null;
+    res.redirect("index.html");
+}
+
+exports.loggedAdminCheck = function(req, res){
+    return req.session.user && req.session.user!=null && req.session.user.permission === 1;
 }

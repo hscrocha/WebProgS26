@@ -28,7 +28,8 @@ app.get("/user/:uid",userCont.get);
 app.post("/user",userCont.postCreateUpdate);
 app.get('/deleteuser/:uid',userCont.getDelete);
 app.post('/dologin', userCont.postLogin);
-
+app.get('/loggeduser', userCont.getLoggedUser);
+app.get('/logout',userCont.getLogout);
 
 
 exports.app = app;

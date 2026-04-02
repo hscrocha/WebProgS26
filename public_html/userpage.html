@@ -25,24 +25,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto w-100 mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="userpage.html">Users</a>
+                    <a class="nav-link" aria-current="page" href="userpage.html"> <i class="bi bi-people-fill"></i> Users</a>
                     </li>
                     <li class="nav-item">
-                    <a id="menuadmin" class="nav-link" style="display:none" aria-current="page" href="admin.html">Admin</a>
+                    <a id="menuadmin" class="nav-link" style="display:none" aria-current="page" href="admin.html"> <i class="bi bi-lock-fill"></i> Admin</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#"> <i class="bi bi-link-45deg"></i> Link</a>
                     </li>
 
                     <li class="nav-item dropdown ms-auto">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"></i>
+                        <i class="bi bi-person-circle"></i> <span id="nameuser"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end ms-auto">
-                        <li><a id="menulogin" class="dropdown-item" href="login.html">Login </a></li>
-                        <li><a id="menuregister" class="dropdown-item" href="register.html">Register</a></li>
+                        <li><a id="menulogin" class="dropdown-item" href="login.html"> <i class="bi bi-box-arrow-in-left"></i> Login </a></li>
+                        <li><a id="menuprofile" class="dropdown-item" href="profile.html"> <i class="bi bi-person-vcard-fill"></i> Profile </a></li>                        
                         <li><hr class="dropdown-divider"></li>
-                        <li><a id="menulogout" class="dropdown-item" href="/logout">Logout</a></li>
+                        <li><a id="menuregister" class="dropdown-item" href="register.html"> <i class="bi bi-person-add"></i> Register</a></li>
+                        <li><a id="menulogout" class="dropdown-item" href="/logout"> <i class="bi bi-box-arrow-right"></i> Logout</a></li>
                     </ul>
                     </li>
                 </ul>
@@ -223,6 +224,8 @@
                 document.getElementById("userform").reset();
             }
         </script>
+
+        <script src="checkPermission.js"></script>
 
     </body>
 </html>        
