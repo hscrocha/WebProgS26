@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> <!-- charset -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- viewport -->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" /> <!-- Bootstrap CSS -->
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"> <!-- Icons library -->
+    </head>
+    <body>
+        <header class="p-5 bg-primary text-white text-center">
+            <div class="container">
+                <h1> CS456 Web Programming App </h1>
+            </div>
+        </header> <!-- Do not confuse <header> (semantic div) with <head> -->
+
+        <!-- Navbar Begin -->
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"> <i class="bi bi-house-fill"></i> Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto w-100 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="userpage.html"> <i class="bi bi-people-fill"></i> Users</a>
+                    </li>
+                    <li class="nav-item">
+                    <a id="menuadmin" class="nav-link" style="display:none" aria-current="page" href="admin.html"> <i class="bi bi-lock-fill"></i> Admin</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#"> <i class="bi bi-link-45deg"></i> Link</a>
+                    </li>
+
+                    <li class="nav-item dropdown ms-auto">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i> <span id="nameuser"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end ms-auto">
+                        <li><a id="menulogin" class="dropdown-item" href="login.html"> <i class="bi bi-box-arrow-in-left"></i> Login </a></li>
+                        <li><a id="menuprofile" class="dropdown-item" href="profile.html"> <i class="bi bi-person-vcard-fill"></i> Profile </a></li>                        
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a id="menuregister" class="dropdown-item" href="register.html"> <i class="bi bi-person-add"></i> Register</a></li>
+                        <li><a id="menulogout" class="dropdown-item" href="/logout"> <i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                    </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>    
+        <!-- Navbar ends -->
+       
+        <div class="container d-flex flex-column min-vh-100">
+            <div class="row mt-3">
+                <div class="col-12">
+                    <h2> React Simple Example </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div id="root"> </div>                    
+                </div>
+            </div>
+        </div>
+
+        <footer class="bg-dark text-white p-2">
+            <div class="container text-center">
+                CS456 - Example App - MIT License
+            </div>
+        </footer>
+
+        <!-- It is a common thing on wep pages to import JS at the bottom of the page. That way your website will "load" its visual elements before it gets "stuck" on the code. -->
+        <!-- Bootstrap Javascript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <!-- Other JS scripts also here -->
+        <script src="checkPermission.js"> </script>
+        <!-- Babel allow JSX code -->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"> </script>
+
+        <script type="text/babel" data-type="module"> 
+            import React from "https://esm.sh/react@19/?dev";
+            import ReactDOMClient from "https://esm.sh/react-dom@19/client?dev";
+
+            const root = ReactDOMClient.createRoot( document.getElementById("root") );  /* Creates a React Root on id=root */
+
+            const myOldElement = React.createElement('h1',{},'Hello React.'); /* Before JSX -- Create element */
+            const myNewElement = <h1> Hello JSX React </h1>; // Using JSX
+            //const invalid = <h1> Hello </h1> <h2> Another hello </h2>; // Invalid because there has to be ONE html tag involving everything.
+            const valid = <div> <h1> Hello </h1> <h2> Another hello </h2> </div>; // This is the valid version of it
+            const multiElement = (
+                <div>
+                    <h1 class="text-primary"> CS456 - Web Programming </h1>
+                    <h2> React Example with JSX </h2>
+                    <h3> Today's date time is { (new Date()).toLocaleString() } </h3>
+                </div>
+            );
+
+            function Hello(){
+                return (
+                    <div>
+                        <h1> Hello React World! </h1>
+                        <h2> I am a react component. </h2>
+                    </div>
+                );
+            }
+
+            root.render( <Hello />  );
+
+        </script>
+
+    </body>
+</html>        
