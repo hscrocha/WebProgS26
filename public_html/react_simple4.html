@@ -75,60 +75,24 @@
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"> </script>
 
         <script type="text/babel" data-type="module"> 
-            // Lecture 33 - React Basics part 2
+            // Lecture 34 - React Basics part 3
             import React from "https://esm.sh/react@19/?dev";
             import ReactDOMClient from "https://esm.sh/react-dom@19/client?dev";
 
             const root = ReactDOMClient.createRoot( document.getElementById("root") );  /* Creates a React Root on id=root */
-//            const root2 = ReactDOMClient.createRoot( document.getElementById("my-other-root") );  /* Creates a React Root on id=root */
 
-
-            function Hello(){
-                return (
-                    <h1> Hello React World! </h1>
-                );
-            }
-            function Course(){
-                return (
-                    <h2> CS456 - Web Programming </h2>
-                );
-            }
-            function MyTitle(){
-                return (
-                    <div className="text-success">
-                        <Hello />
-                        <Course />
-                    </div>
-                );
-            }
-            function SayHello(props){
-                if(props.name)
-                    return (
-                        <>
-                            <h3> Hello {props.name}, how are you? </h3> 
-                            <h3> Your major is {props.major} </h3>
-                        </>
-                    );
-                else
-                    return <h3> Hello Stranger. </h3>;
-            }
-            function DisplayUser(props){
-                let perm = "Common";
-                if(props.user.permission == 1) perm = "Admin";
+            function Leave(){
+                function areYouSure(){ //inner function
+                    let option = window.confirm("Are you sure you want to leave?");
+                    if(!option) event.preventDefault();
+                }
 
                 return (
-                    <div>
-                        <h4> Name: {props.user.name} </h4>
-                        <h4> Login: {props.user.login} </h4>
-                        <h4> Permission: {props.user.permission==1?"Admin":"Common"} </h4>
-                        <h4> Permission (but using if): {perm} </h4>
-                    </div>
+                    <a className="link-success" href="http://loyola.edu" onClick={areYouSure} > Leave to Loyola </a>
                 );
             }
 
-            const myuser = {_id: 1, name:'Prof. Rocha',login:'hsrocha@loyola.edu',password:'123456', permission:1 }
-
-            root.render( <DisplayUser user={myuser} />  );
+            root.render( <Leave />  );
         </script>
 
     </body>
