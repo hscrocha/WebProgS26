@@ -1,12 +1,21 @@
 import React from "react";
 import UserRow from "./UserRow";
 
-export default function UserTable(){
-    const lstUsers = [
-                {_id:1,name:'H. Rocha', login:'hsrocha@loyola.edu', password:'123456',permission:1},
-                {_id:2,name:'John Doe', login:'jd@aol.com', password:'123456', permission:2},
-                {_id:3,name:'Jane Doe', login:'janed@compuserve.com', password:'123456', permission:2}
-            ];
+async function fetchUsers(){
+    let response = await fetch('/user'); //gets data
+    return await response.json(); //converts to JavaScript Object
+}
+
+let userserverdata; //singleton pattern (lazy initiation)
+function getServerData(){
+    if(!userserverdata){
+        userserverdata = fetchUsers();
+    }
+    return userserverdata
+}
+
+function UserTableContent(){
+    const arraydata = React.use( getServerData() );
     return (
         <table class="table table-striped table-hover">
             <thead>
@@ -18,9 +27,16 @@ export default function UserTable(){
                 </tr>
             </thead>
             <tbody>
-                {lstUsers.map( singleuser => <UserRow user={singleuser} /> ) }
+                {arraydata.map( singleuser => <UserRow key={singleuser._id} user={singleuser} /> ) }
             </tbody>
         </table>
     );
+}
 
+export default function UserTable(){
+    return (
+        <React.Suspense fallback={<h3>Loading users...</h3>}>
+            <UserTableContent />
+        </React.Suspense>
+    );
 }
