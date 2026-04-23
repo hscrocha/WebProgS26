@@ -6,12 +6,12 @@ async function fetchUsers(){
     return await response.json(); //converts to JavaScript Object
 }
 
-let userserverdata; //singleton pattern (lazy initiation)
+let serveruserdata = null;
 function getServerData(){
-    if(!userserverdata){
-        userserverdata = fetchUsers();
+    if(serveruserdata==null){
+        serveruserdata = fetchUsers();
     }
-    return userserverdata
+    return serveruserdata;
 }
 
 function UserTableContent(){
