@@ -14,8 +14,8 @@ function getServerData(){
     return serveruserdata;
 }
 
-function UserTableContent(){
-    const arraydata = React.use( getServerData() );
+function UserTableContent(props){
+    const arraydata = props.lstUsers ? props.lstUsers : React.use( getServerData() );
     return (
         <table class="table table-striped table-hover">
             <thead>
@@ -33,10 +33,10 @@ function UserTableContent(){
     );
 }
 
-export default function UserTable(){
+export default function UserTable(props){
     return (
         <React.Suspense fallback={<h3>Loading users...</h3>}>
-            <UserTableContent />
+            <UserTableContent lstUsers = {props.lstUsers} />
         </React.Suspense>
     );
 }

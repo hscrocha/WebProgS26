@@ -33,9 +33,13 @@ jobs:
         run: sudo docker run -d -p 27017:27017  -e MONGO_INITDB_ROOT_USERNAME=adm -e MONGO_INITDB_ROOT_PASSWORD=secret mongo:latest
            
       - name: Install packages
-        run: npm ci
+        run: |
+            npm ci
+            cd view && npm ci && npm build
           
       - name: Tests
-        run: npm test -- --ci --forceExit --collectCoverage  
+        run: |
+            npm test -- --ci --forceExit --collectCoverage  
+            cd view && npm test -- --ci
         env: #Sets an environment variable 
           CI: true 
