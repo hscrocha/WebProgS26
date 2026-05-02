@@ -35,7 +35,7 @@ jobs:
       - name: Install packages
         run: |
             npm ci
-            cd view && npm ci && npm build
+            cd view && npm ci && npm run build
           
       - name: Tests
         run: |
